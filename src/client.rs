@@ -125,7 +125,7 @@ impl<Http: HttpClient> Client<Http> {
     ) -> Result<MultiSearchResponse<T>, Error> {
         self.http_client
             .request::<(), &MultiSearchQuery<Http>, MultiSearchResponse<T>>(
-                &format!("{}/multi-search", &self.host),
+                &format!("{}/multi-search", self.host),
                 Method::Post { body, query: () },
                 200,
             )
@@ -140,7 +140,7 @@ impl<Http: HttpClient> Client<Http> {
     ) -> Result<FederatedMultiSearchResponse<T>, Error> {
         self.http_client
             .request::<(), &FederatedMultiSearchQuery<Http>, FederatedMultiSearchResponse<T>>(
-                &format!("{}/multi-search", &self.host),
+                &format!("{}/multi-search", self.host),
                 Method::Post { body, query: () },
                 200,
             )
