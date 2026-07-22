@@ -377,7 +377,7 @@ mod test {
         );
 
         let error = Error::Uuid(Uuid::parse_str("67e55044").unwrap_err());
-        assert!(matches!(error, Error::Uuid(_)));
+        assert!(matches!(&error, Error::Uuid(_)));
         assert!(error
             .to_string()
             .starts_with("The uid of the token has bit an uuid4 format:"));
