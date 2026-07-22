@@ -23,7 +23,7 @@ services:
       - cargo:/vendor/cargo
 
   meilisearch:
-    image: getmeili/meilisearch-enterprise:latest
+    image: getmeili/meilisearch-enterprise:v1.46
     ports:
       - "7700"
     environment:

@@ -50,6 +50,7 @@ pub fn generate_tenant_token(
 
 #[cfg(test)]
 mod tests {
+    use crate::errors::Error;
     use crate::tenant_tokens::*;
     use big_s::S;
     use jsonwebtoken::{decode, Algorithm, DecodingKey, Validation};
@@ -163,7 +164,7 @@ mod tests {
         let key = "Ëa1ทt9bVcL-vãUทtP3OpXW5qPc%bWH5ทvw09";
         let token = generate_tenant_token(api_key_uid, json!(SEARCH_RULES), key, None);
 
-        assert!(token.is_err());
+        assert!(matches!(token, Err(Error::Uuid(_))));
     }
 
     #[test]
@@ -172,6 +173,6 @@ mod tests {
         let key = "Ëa1ทt9bVcL-vãUทtP3OpXW5qPc%bWH5ทvw09";
         let token = generate_tenant_token(api_key_uid, json!(SEARCH_RULES), key, None);
 
-        assert!(token.is_err());
+        assert!(matches!(token, Err(Error::InvalidUuid4Version)));
     }
 }
